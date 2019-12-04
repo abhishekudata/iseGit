@@ -1,0 +1,245 @@
+Step 0: Install git and create a GitHub account
+
+check git
+$ git --version
+
+Install Git 
+$ sudo apt install git-all
+
+
+create github account
+https://github.com/join
+abhishekudata
+pabhiudata1998
+
+
+Step 1: Create a local git repository
+When creating a new project on your local machine using git, you'll first create a new repository (or often, 'repo', for short)
+
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git$ mkdir iseGit
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git$ cd iseGit/
+
+
+To initialize a git repository in the root of the folder, run the git init command: 
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git init
+Initialized empty Git repository in /home/arcanin3/FOSS/Git/iseGit/.git/
+
+
+Step 2: Add a new file to the repo
+Go ahead and add a new file to the project, using any text editor you like or running a "touch" command.
+
+Once you've added or modified files in a folder containing a git repo, git will notice that changes have been made inside the repo. But, git won't officially keep track of the file (that is, put it in a commit - we'll talk more about commits next) unless you explicitly tell it to.
+
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ touch iseDemo.txt
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ ls
+iseDemo.txt
+
+
+----
+After creating the new file, you can use the "git status" command to see which files git knows exist.
+
+====
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	iseDemo.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+====
+
+What this basically says is, "Hey, we noticed you created a new file called iseDemo.txt, but unless you use the 'git add' command we aren't going to do anything with it."
+
+----
+
+Step 3: Add a file to the staging environment
+====
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git add iseDemo.txt 
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git status 
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   iseDemo.txt
+
+====
+If you rerun the git status command, you'll see that git has added the file to the staging environment (notice the "Changes to be committed" line).  
+
+Step 4: Create a commit
+SYNTAX
+git commit -m "Your message about the commit"
+
+=====
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git commit -m "my First Commit for iseDemo"
+[master (root-commit) 2fea6f0] my First Commit for iseDemo
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 iseDemo.txt
+=====
+
+
+Step 5: Create a new branch
+
+If you want to work on new feature of project then create "BRANCH" and work in that new branch .. after completing the feature ... "MERGE IT"
+
+When you create a new branch, Git keeps track of which commit your branch 'branched' off of, so it knows the history behind all the files. 
+Run "git checkout -b <my branch name>" : This command will automatically create a new branch and then 'check you out' on it, meaning git will move you to that branch, off of the master branch.
+
+After running the above command, you can use the "git branch" command to confirm that your branch was created:
+
+=====
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git branch
+* master
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git checkout -b masterOfFeature2
+Switched to a new branch 'masterOfFeature2'
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git branch
+  master
+* masterOfFeature2
+=======
+The branch name with the asterisk next to it indicates which branch you're pointed to at that given time
+
+Now, if you switch back to the master branch and make some more commits, your new branch won't see any of those changes until you merge those changes onto your new branch.
+
+
+
+
+
+Step 6: Create a new repository on GitHub
+
+If you only want to keep track of your code locally, you don't need to use GitHub. But if you want to work with a team, you can use GitHub to collaboratively modify the project's code.
+
+ 
+
+To create a new repo on GitHub, log in and go to the GitHub home page. You should see a green '+ New repository' button: 
+
+====
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git remote add origin https://github.com/abhishekudata/iseGit.git
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git push -u origin master
+Username for 'https://github.com': abhishekudata
+Password for 'https://abhishekudata@github.com': 
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 227 bytes | 227.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/abhishekudata/iseGit.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+======
+
+
+
+Step 7: Push a branch to GitHub
+
+To push changes onto a new branch on GitHub, you'll want to run git push origin yourbranchname. 
+====
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git push origin masterOfFeature2 
+Username for 'https://github.com': abhishekudata
+Password for 'https://abhishekudata@github.com': 
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 285 bytes | 285.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote: 
+remote: Create a pull request for 'masterOfFeature2' on GitHub by visiting:
+remote:      https://github.com/abhishekudata/iseGit/pull/new/masterOfFeature2
+remote: 
+To https://github.com/abhishekudata/iseGit.git
+ * [new branch]      masterOfFeature2 -> masterOfFeature2
+
+====
+
+You might be wondering what that "origin" word means in the command above. What happens is that when you clone a remote repository to your local machine, git creates an alias for you. In nearly all cases this alias is called "origin." It's essentially shorthand for the remote repository's URL. So, to push your changes to the remote repository, you could've used either the command: 
+git push git@github.com:git/git.git yourbranchname 
+or
+git push origin yourbranchname
+
+
+
+
+Step 8: Create a Pull Request (PR)
+
+REFERENCE
+https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners
+
+
+Step 9: Merge a PR
+
+REFERENCE
+https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners
+
+
+Step 10: Get changes on GitHub back to your computer
+
+In order to get the most recent changes that you or others have merged on GitHub, use the git pull origin master command (when working on the master branch).
+
+
+===IF YOU ARE ON OTHER BRANCH THEN COME BACK TO MASTER BRANCH ===
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git branch
+* master
+  masterOfFeature2
+=========
+
+NOW WE CAN PULL 
+===
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git pull origin master
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (1/1), done.
+From https://github.com/abhishekudata/iseGit
+ * branch            master     -> FETCH_HEAD
+   2fea6f0..a939607  master     -> origin/master
+Updating 2fea6f0..a939607
+Fast-forward
+ iseDemo.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+ ====
+ see all new commit
+ ==
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git log
+
+===
+
+
+Step 11: Bask in your git glory
+You've successfully made a PR and merged your code to the master branch. Congratulations! 
+
+
+===
+delete a branch
+git push origin --delete <<branch name>>
+
+
+===LOCALLY===
+===NOT TO SWITCH TO OTHER BRACH AND THEN DELETE RESPECITVE BRANCH====
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git branch
+* master
+  masterOfFeature2
+  readMe.cd
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git branch -d readMe.cd 
+Deleted branch readMe.cd (was a939607).
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git branch
+* master
+  masterOfFeature2
+======
+
+==Remote branch==
+arcanin3@arcanin3-Inspiron-5558:~/FOSS/Git/iseGit$ git push -d origin readMe.cd 
+Username for 'https://github.com': abhishekudata
+Password for 'https://abhishekudata@github.com': 
+To https://github.com/abhishekudata/iseGit.git
+ - [deleted]         readMe.cd
+
+====
+
